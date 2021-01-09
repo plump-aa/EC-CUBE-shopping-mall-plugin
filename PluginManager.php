@@ -37,7 +37,7 @@ class PluginManager extends AbstractPluginManager
     /**
      * 作成したショップ用権限のエンティティ保存パス
      */
-    const SHOP_AUTHORITY_XML_PATH = __DIR__.DIRECTORY_SEPARATOR.'shop_authority.xml';
+    const SHOP_AUTHORITY_XML_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'shop_authority.xml';
 
     /**
      * ショップ用権限の拒否URL一覧
@@ -48,7 +48,15 @@ class PluginManager extends AbstractPluginManager
         '/product/tag',
         '/product/category_csv_upload',
         '/customer',
-        '/content',
+        //'/content',
+        '/content/file_manager',
+        '/content/layout',
+        '/content/page',
+        '/content/css',
+        '/content/js',
+        '/content/block',
+        '/content/cache',
+        '/content/maintenance',
         '/setting/shop/payment',
         '/setting/shop/tax',
         '/setting/shop/mail',
@@ -65,7 +73,7 @@ class PluginManager extends AbstractPluginManager
     {
         $locale = env('ECCUBE_LOCALE');
         $getResourcePath = function ($locale) {
-            return __DIR__.DIRECTORY_SEPARATOR.'Resource'.DIRECTORY_SEPARATOR.'locale'.DIRECTORY_SEPARATOR.'messages.'.$locale.'.yaml';
+            return __DIR__ . DIRECTORY_SEPARATOR . 'Resource' . DIRECTORY_SEPARATOR . 'locale' . DIRECTORY_SEPARATOR . 'messages.' . $locale . '.yaml';
         };
         if (!file_exists($getResourcePath($locale))) {
             $locale = 'ja';
@@ -125,6 +133,7 @@ class PluginManager extends AbstractPluginManager
         );
 
         foreach (self::DENY_URLS as $denyUrl) {
+
             $AuthorityRole = new AuthorityRole();
             $AuthorityRole->setAuthority($Authority);
             $AuthorityRole->setDenyUrl($denyUrl);

@@ -8,6 +8,7 @@ use Eccube\Entity\ClassCategory;
 use Eccube\Entity\ClassName;
 use Eccube\Entity\Delivery;
 use Eccube\Entity\Master\SaleType;
+use Eccube\Entity\News;
 use Eccube\Entity\Order;
 use Eccube\Entity\Product;
 use Eccube\Entity\ProductClass;
@@ -23,9 +24,9 @@ class OwnShopFilter extends SQLFilter
         if (!is_null($this->shopId)) {
             if (in_array(
                 $targetEntity->reflClass->getName(),
-                [Product::class, ProductClass::class, ClassCategory::class, ClassName::class, Order::class, Delivery::class]
+                [Product::class, ProductClass::class, ClassCategory::class, ClassName::class, Order::class, Delivery::class, News::class]
             )) {
-                return $targetTableAlias.'.shop_id = '.$this->getParameter('shop_id');
+                return $targetTableAlias . '.shop_id = ' . $this->getParameter('shop_id');
             }
         }
         if (!is_null($this->saleTypeId)) {
@@ -33,7 +34,7 @@ class OwnShopFilter extends SQLFilter
                 $targetEntity->reflClass->getName(),
                 [SaleType::class]
             )) {
-                return $targetTableAlias.'.id = '.$this->getParameter('sale_type_id');
+                return $targetTableAlias . '.id = ' . $this->getParameter('sale_type_id');
             }
         }
 

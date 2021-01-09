@@ -12,6 +12,7 @@ use Eccube\Entity\Member;
 use Eccube\Entity\Order;
 use Eccube\Entity\Product;
 use Eccube\Entity\ProductClass;
+use Eccube\Entity\News;
 use Eccube\Request\Context;
 
 class ShoppingMallEventSubscriber implements EventSubscriber
@@ -77,6 +78,9 @@ class ShoppingMallEventSubscriber implements EventSubscriber
                     $entity->setShop($Member->getShop());
                 }
                 if ($entity instanceof Delivery) {
+                    $entity->setShop($Member->getShop());
+                }
+                if ($entity instanceof News) {
                     $entity->setShop($Member->getShop());
                 }
             }
